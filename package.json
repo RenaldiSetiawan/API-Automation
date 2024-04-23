@@ -1,0 +1,16 @@
+{
+  "name": "automationtes",
+  "version": "1.0.0",
+  "description": "API Automation",
+  "scripts": {
+    "test": "mocha --exit --recursive test --timeout 100000 --reporter mochawesome --reporter-options autoOpen=true"
+  },
+  "author": "Renal",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "mochawesome": "^7.1.3",
+    "supertest": "^6.1.6"
+  }
+}

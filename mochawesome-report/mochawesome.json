@@ -1,0 +1,178 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-04-23T08:23:28.643Z",
+    "end": "2024-04-23T08:23:49.361Z",
+    "duration": 20718,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c05ea27f-b11d-4e81-a118-ece814d52bd7",
+      "title": "",
+      "fullFile": "C:\\Belajar-QA-Enginer\\APIAutomation\\Automationtes\\test.js",
+      "file": "\\test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "07c77ecf-1d72-428f-a029-4b756da73391",
+          "title": "API Automation Tests",
+          "fullFile": "C:\\Belajar-QA-Enginer\\APIAutomation\\Automationtes\\test.js",
+          "file": "\\test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should Create New User",
+              "fullTitle": "API Automation Tests Should Create New User",
+              "timedOut": false,
+              "duration": 3448,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const newUser = {\n            firstName: \"Test\",\n            lastName: \"User\",\n            email: \"userauah@fake.com\",\n            password: \"myPassword\",\n        };\n        const response = await api.post('/users')\n            .send(newUser)\n            .set('Accept', 'application/json')\n            .set('Content-Type', 'application/json')\n            .expect('Content-Type', /json/)\n            .expect(400);\n        // expect(response.body).to.have.property('id');\n        // expect(response.body.name).to.equal(newUser.firstName);\n        // expect(response.body.email).to.equal(newUser.lastName);\n        // expect(response.body.phone).to.equal(newUser.email);\n        // expect(response.body.name).to.equal(newUser.password);\n        if (response.body.error) {\n            console.error(\"Error message from server:\", response.body.error);\n        }\n        console.log(\"Full response:\", response.body);\n        expect(response.status).to.equal(400);",
+              "err": {},
+              "uuid": "6ac2ba38-eefb-4194-a2de-c78a6d818716",
+              "parentUUID": "07c77ecf-1d72-428f-a029-4b756da73391",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should GET User Profile",
+              "fullTitle": "API Automation Tests Should GET User Profile",
+              "timedOut": false,
+              "duration": 5155,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjI2MmI4NzQ2NDc2ZDAwMTMzZGY4MmEiLCJpYXQiOjE3MTM3Nzc1NDN9.o-1ovuNcxiv6W0dNjDy_yHwC6DFR-3Tko6YeHTsvc2w';\nconst response = await api.get('/users/me')\n    .set('Authorization', `Bearer ${token}`)\n    .set('Accept', 'application/json')\n    .expect('Content-Type', /json/)\n    .expect(200);\nexpect(response.body).to.have.property('firstName');\nexpect(response.body).to.have.property('lastName');\nexpect(response.body).to.have.property('email');",
+              "err": {},
+              "uuid": "8c08f686-7bf8-4bb5-bf5a-bfae0965628d",
+              "parentUUID": "07c77ecf-1d72-428f-a029-4b756da73391",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should Create New Contact",
+              "fullTitle": "API Automation Tests Should Create New Contact",
+              "timedOut": false,
+              "duration": 4445,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjI2MmI4NzQ2NDc2ZDAwMTMzZGY4MmEiLCJpYXQiOjE3MTM3Nzc1NDN9.o-1ovuNcxiv6W0dNjDy_yHwC6DFR-3Tko6YeHTsvc2w';\nconst newContact = {\n    firstName: \"John\",\n    lastName: \"Doe\",\n    birthdate: \"1970-01-01\",\n    email: \"jdoe@fake.com\",\n    phone: \"8005555555\",\n    street1: \"1 Main St.\",\n    street2: \"Apartment A\",\n    city: \"Anytown\",\n    stateProvince: \"KS\",\n    postalCode: \"12345\",\n    country: \"USA\"\n}\nconst response = await api.post('/contacts')\n    .set('Authorization', `Bearer ${token}`)\n    .set('Accept', 'application/json')\n    .send(newContact)\n    .expect('Content-Type', /json/)\n    .expect(201);\nexpect(response.body).to.have.property('_id');\nexpect(response.body.firstName).to.equal(newContact.firstName);\nexpect(response.body.lastName).to.equal(newContact.lastName);\nexpect(response.body.birthdate).to.equal(newContact.birthdate);\nexpect(response.body.email).to.equal(newContact.email);\nexpect(response.body.phone).to.equal(newContact.phone);\nexpect(response.body.street1).to.equal(newContact.street1);\nexpect(response.body.street2).to.equal(newContact.street2);\nexpect(response.body.city).to.equal(newContact.city);\nexpect(response.body.stateProvince).to.equal(newContact.stateProvince);\nexpect(response.body.postalCode).to.equal(newContact.postalCode);\nexpect(response.body.country).to.equal(newContact.country);",
+              "err": {},
+              "uuid": "8c8cd01d-5a68-4248-9390-d3e43138cf29",
+              "parentUUID": "07c77ecf-1d72-428f-a029-4b756da73391",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should GET Contact by ID",
+              "fullTitle": "API Automation Tests Should GET Contact by ID",
+              "timedOut": false,
+              "duration": 3479,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjI2MmI4NzQ2NDc2ZDAwMTMzZGY4MmEiLCJpYXQiOjE3MTM3Nzc1NDN9.o-1ovuNcxiv6W0dNjDy_yHwC6DFR-3Tko6YeHTsvc2w';\nconst id = '662701c1f8ad35001319a8d3';\nconst response = await api.get(`/contacts/${id}`)\n    .set('Authorization', `Bearer ${token}`)\n    .set('Accept', 'application/json')\n    .expect('Content-Type', /json/)\n    .expect(200);\nexpect(response.body).to.have.property('_id');\nexpect(response.body).to.have.property('firstName');\nexpect(response.body).to.have.property('lastName');\nexpect(response.body).to.have.property('birthdate');\nexpect(response.body).to.have.property('email');\nexpect(response.body).to.have.property('phone');\nexpect(response.body).to.have.property('street1');\nexpect(response.body).to.have.property('street2');\nexpect(response.body).to.have.property('city');\nexpect(response.body).to.have.property('stateProvince');\nexpect(response.body).to.have.property('postalCode');\nexpect(response.body).to.have.property('country');\nexpect(response.body).to.have.property('owner');\nexpect(response.body).to.have.property('__v');",
+              "err": {},
+              "uuid": "d642349e-487f-472e-b7d1-cc0e404871e8",
+              "parentUUID": "07c77ecf-1d72-428f-a029-4b756da73391",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should Update Contact by ID",
+              "fullTitle": "API Automation Tests Should Update Contact by ID",
+              "timedOut": false,
+              "duration": 4172,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjI2MmI4NzQ2NDc2ZDAwMTMzZGY4MmEiLCJpYXQiOjE3MTM3Nzc1NDN9.o-1ovuNcxiv6W0dNjDy_yHwC6DFR-3Tko6YeHTsvc2w';\nconst id = '662701c1f8ad35001319a8d3';\nconst updateContact = {\n    firstName: \"Amy\",\n    lastName: \"Miller\",\n    birthdate: \"1992-02-02\",\n    email: \"amiller@fake.com\",\n    phone: \"8005554242\",\n    street1: \"13 School St.\",\n    street2: \"Apt. 5\",\n    city: \"Washington\",\n    stateProvince: \"QC\",\n    postalCode: \"A1A1A1\",\n    country: \"Canada\"\n};\nconst response = await api.put(`/contacts/${id}`)\n    .set('Authorization', `Bearer ${token}`)\n    .set('Accept', 'application/json')\n    .send(updateContact)\n    .expect('Content-Type', /json/)\n    .expect(200);\nexpect(response.body).to.have.property('_id').to.equal(id);\nexpect(response.body).to.have.property('firstName').to.equal(updateContact.firstName);\nexpect(response.body).to.have.property('lastName').to.equal(updateContact.lastName);\nexpect(response.body).to.have.property('birthdate').to.equal(updateContact.birthdate);\nexpect(response.body).to.have.property('email').to.equal(updateContact.email);\nexpect(response.body).to.have.property('phone').to.equal(updateContact.phone);\nexpect(response.body).to.have.property('street1').to.equal(updateContact.street1);\nexpect(response.body).to.have.property('street2').to.equal(updateContact.street2);\nexpect(response.body).to.have.property('city').to.equal(updateContact.city);\nexpect(response.body).to.have.property('stateProvince').to.equal(updateContact.stateProvince);\nexpect(response.body).to.have.property('postalCode').to.equal(updateContact.postalCode);\nexpect(response.body).to.have.property('country').to.equal(updateContact.country);",
+              "err": {},
+              "uuid": "c64be9b1-5a1f-4bcc-bc36-620dde527951",
+              "parentUUID": "07c77ecf-1d72-428f-a029-4b756da73391",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6ac2ba38-eefb-4194-a2de-c78a6d818716",
+            "8c08f686-7bf8-4bb5-bf5a-bfae0965628d",
+            "8c8cd01d-5a68-4248-9390-d3e43138cf29",
+            "d642349e-487f-472e-b7d1-cc0e404871e8",
+            "c64be9b1-5a1f-4bcc-bc36-620dde527951"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 20699,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 100000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 100000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.2.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "autoOpen": "true"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
